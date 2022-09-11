@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.ssm.mapper.original.KaoqinMapper">
+  <resultMap id="BaseResultMap" type="cn.itcast.ssm.po.original.Kaoqin">
+    <id column="user_name" jdbcType="VARCHAR" property="userName" />
+    <id column="yue" jdbcType="CHAR" property="yue" />
+    <id column="ri" jdbcType="CHAR" property="ri" />
+    <result column="start_time" jdbcType="VARCHAR" property="startTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="rest_time" jdbcType="VARCHAR" property="restTime" />
+    <result column="zong_time" jdbcType="VARCHAR" property="zongTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_name, yue, ri, start_time, end_time, rest_time, zong_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="cn.itcast.ssm.po.original.KaoqinKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kaoqin
+    where user_name = #{userName,jdbcType=VARCHAR}
+      and yue = #{yue,jdbcType=CHAR}
+      and ri = #{ri,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.itcast.ssm.po.original.KaoqinKey">
+    delete from kaoqin
+    where user_name = #{userName,jdbcType=VARCHAR}
+      and yue = #{yue,jdbcType=CHAR}
+      and ri = #{ri,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.itcast.ssm.po.original.Kaoqin">
+    insert into kaoqin (user_name, yue, ri, 
+      start_time, end_time, rest_time, 
+      zong_time)
+    values (#{userName,jdbcType=VARCHAR}, #{yue,jdbcType=CHAR}, #{ri,jdbcType=CHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{restTime,jdbcType=VARCHAR}, 
+      #{zongTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itcast.ssm.po.original.Kaoqin">
+    insert into kaoqin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="yue != null">
+        yue,
+      </if>
+      <if test="ri != null">
+        ri,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="restTime != null">
+        rest_time,
+      </if>
+      <if test="zongTime != null">
+        zong_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="yue != null">
+        #{yue,jdbcType=CHAR},
+      </if>
+      <if test="ri != null">
+        #{ri,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="restTime != null">
+        #{restTime,jdbcType=VARCHAR},
+      </if>
+      <if test="zongTime != null">
+        #{zongTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.ssm.po.original.Kaoqin">
+    update kaoqin
+    <set>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="restTime != null">
+        rest_time = #{restTime,jdbcType=VARCHAR},
+      </if>
+      <if test="zongTime != null">
+        zong_time = #{zongTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_name = #{userName,jdbcType=VARCHAR}
+      and yue = #{yue,jdbcType=CHAR}
+      and ri = #{ri,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.ssm.po.original.Kaoqin">
+    update kaoqin
+    set start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      rest_time = #{restTime,jdbcType=VARCHAR},
+      zong_time = #{zongTime,jdbcType=VARCHAR}
+    where user_name = #{userName,jdbcType=VARCHAR}
+      and yue = #{yue,jdbcType=CHAR}
+      and ri = #{ri,jdbcType=CHAR}
+  </update>
+</mapper>
